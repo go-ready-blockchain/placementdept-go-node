@@ -61,7 +61,7 @@ func callCompanyRetrieveData(name string, company string) {
 	if err != nil {
 		print(err)
 	}
-	resp, err := http.Post("http://localhost:5002/companyRetrieveData",
+	resp, err := http.Post("http://company-cluster2-jen-ci.devtools-dev.ext.devshift.net/companyRetrieveData",
 		"application/json", bytes.NewBuffer(reqBody))
 	if err != nil {
 		print(err)
@@ -84,7 +84,7 @@ func callprintUsage(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	port := "5004"
+	port := "8080"
 	http.HandleFunc("/verify-PlacementDept", callverificationByPlacementDept)
 	http.HandleFunc("/usage", callprintUsage)
 	fmt.Printf("Server listening on localhost:%s\n", port)

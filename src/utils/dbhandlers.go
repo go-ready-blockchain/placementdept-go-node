@@ -35,7 +35,7 @@ func StoreInBLOCKCHAIN(firstblockHASH []byte, firstblockbytes []byte) bool {
 
 	sess, _ := session.NewSession(&aws.Config{
 
-		Region: aws.String("us-east-1"),
+		Region: aws.String("us-east-1"), DisableSSL : aws.Bool(true),
 	})
 	svc := dynamodb.New(sess)
 
@@ -77,7 +77,7 @@ func StoreLastHash(hash []byte) bool {
 
 	sess, _ := session.NewSession(&aws.Config{
 
-		Region: aws.String("us-east-1"),
+		Region: aws.String("us-east-1"), DisableSSL : aws.Bool(true),
 	})
 	svc := dynamodb.New(sess)
 
@@ -119,7 +119,7 @@ func GetLastHash() []byte {
 
 	sess, _ := session.NewSession(&aws.Config{
 
-		Region: aws.String("us-east-1"),
+		Region: aws.String("us-east-1"), DisableSSL : aws.Bool(true),
 	})
 	svc := dynamodb.New(sess)
 
@@ -162,7 +162,7 @@ func GetFromBLOCKCHAIN(hash []byte) []byte {
 	}
 	sess, _ := session.NewSession(&aws.Config{
 
-		Region: aws.String("us-east-1"),
+		Region: aws.String("us-east-1"), DisableSSL : aws.Bool(true),
 	})
 	svc := dynamodb.New(sess)
 	//tableName = "BLockchain"
@@ -192,12 +192,71 @@ func GetFromBLOCKCHAIN(hash []byte) []byte {
 	return item.Block
 
 }
+func StoreStudentData(usn string, branch string, name string, gender string, dob string, perc10th string, perc12th string, cgpa string, backlog bool, email string, mobile string, staroffer bool){
+	type Item struct {
+		Usn       string
+		Branch    string
+		Name      string
+		Gender    string
+		Dob       string
+		Perc10th  string
+		Perc12th  string
+		Cgpa      string
+		Backlog   bool
+		Email     string
+		Mobile    string
+		StarOffer bool
+	}
+	sess, _ := session.NewSession(&aws.Config{
+
+		Region: aws.String("us-east-1"), DisableSSL : aws.Bool(true),
+	})
+	svc := dynamodb.New(sess)
+
+	item := Item{
+		Usn: usn,
+		Branch: branch,
+		Name: name,
+		Gender: gender,
+		Dob: dob,
+		Perc10th: perc10th,
+		Perc12th: perc12th,
+		Cgpa: cgpa,
+		Backlog: backlog,
+		Email: email,
+		Mobile: mobile,
+		StarOffer: staroffer,
+	}
+	av, err := dynamodbattribute.MarshalMap(item)
+	if err != nil {
+		fmt.Println("Got error marshalling new item:")
+		fmt.Println(err.Error())
+		os.Exit(1)
+	}
+
+	// Create item in table Movies
+	tableName := "Student"
+
+	input := &dynamodb.PutItemInput{
+		Item:      av,
+		TableName: aws.String(tableName),
+	}
+
+	_, err = svc.PutItem(input)
+	if err != nil {
+		fmt.Println("Got error calling PutItem:")
+		fmt.Println(err.Error())
+		os.Exit(1)
+	}
+
+
+}
 
 func GetStudentData(usn string) []byte {
 
 	sess, _ := session.NewSession(&aws.Config{
 
-		Region: aws.String("us-east-1"),
+		Region: aws.String("us-east-1"), DisableSSL : aws.Bool(true),
 	})
 	svc := dynamodb.New(sess)
 	//tableName = "BLockchain"
@@ -239,7 +298,7 @@ func StoreInBuffer(block []byte, name string) {
 
 	sess, _ := session.NewSession(&aws.Config{
 
-		Region: aws.String("us-east-1"),
+		Region: aws.String("us-east-1"), DisableSSL : aws.Bool(true),
 	})
 	svc := dynamodb.New(sess)
 
@@ -279,7 +338,7 @@ func FetchBlockFromBuffer(name string) []byte {
 
 	sess, _ := session.NewSession(&aws.Config{
 
-		Region: aws.String("us-east-1"),
+		Region: aws.String("us-east-1"), DisableSSL : aws.Bool(true),
 	})
 	svc := dynamodb.New(sess)
 
@@ -315,7 +374,7 @@ func DeleteBlockFromBuffer(name string, company string) bool {
 	fmt.Println("hello i am deleting")
 	sess, _ := session.NewSession(&aws.Config{
 
-		Region: aws.String("us-east-1"),
+		Region: aws.String("us-east-1"), DisableSSL : aws.Bool(true),
 	})
 	svc := dynamodb.New(sess)
 
@@ -348,7 +407,7 @@ func PutUserBytesIntoDB(ubytes []byte) bool {
 	}
 	sess, _ := session.NewSession(&aws.Config{
 
-		Region: aws.String("us-east-1"),
+		Region: aws.String("us-east-1"), DisableSSL : aws.Bool(true),
 	})
 	svc := dynamodb.New(sess)
 	item := Item{}
@@ -388,7 +447,7 @@ func GetUserBytesFromDB(name string) []byte {
 	}
 	sess, _ := session.NewSession(&aws.Config{
 
-		Region: aws.String("us-east-1"),
+		Region: aws.String("us-east-1"), DisableSSL : aws.Bool(true),
 	})
 	svc := dynamodb.New(sess)
 
@@ -427,7 +486,7 @@ func PutPublickeyIntoDB(publickeybytes []byte, name string) bool {
 	}
 	sess, _ := session.NewSession(&aws.Config{
 
-		Region: aws.String("us-east-1"),
+		Region: aws.String("us-east-1"), DisableSSL : aws.Bool(true),
 	})
 	svc := dynamodb.New(sess)
 	item := Item{
@@ -467,7 +526,7 @@ func GetPublicKeyFromDB(name string) []byte {
 	}
 	sess, _ := session.NewSession(&aws.Config{
 
-		Region: aws.String("us-east-1"),
+		Region: aws.String("us-east-1"), DisableSSL : aws.Bool(true),
 	})
 	svc := dynamodb.New(sess)
 
