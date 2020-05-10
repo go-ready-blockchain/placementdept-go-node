@@ -9,8 +9,11 @@ github.com/dgraph-io/badger v1.5.4 h1:gVTrpUTbbr/T24uvoCaqY2KSHfNLVGm0w+hbee2HMe
 github.com/dgraph-io/badger v1.5.4/go.mod h1:VZxzAIRPHRVNRKRo6AXrX9BJegn6il06VMTZVJYCIjQ=
 github.com/dgryski/go-farm v0.0.0-20180109070241-2de33835d102 h1:afESQBXJEnj3fu+34X//E8Wg3nEbMJxJkwSc0tPePK0=
 github.com/dgryski/go-farm v0.0.0-20180109070241-2de33835d102/go.mod h1:SqUrOPUnsFjfmXRMNPybcSiG0BgUW2AuFH8PAnS2iTw=
+github.com/fitquick/dynamodb-examples v0.0.0-20170404215933-c4f9e8b3181d/go.mod h1:II0HWX6R2+FCNaZFKlNCAbr1zOkK+VndxM0+mh4lBP8=
 github.com/go-ready-blockchain/blockchain-go-core v0.0.0-20200508173507-d5a599efda93 h1:2P/n3S5/RZ8eJ6doL+KSJNr//yDBN5viFrWUfMUDbDA=
 github.com/go-ready-blockchain/blockchain-go-core v0.0.0-20200508173507-d5a599efda93/go.mod h1:dJvb5+Tc/m2+3rlfnbYKqTa6GTZWkwUvme4y/aBglHI=
+github.com/go-ready-blockchain/blockchain-go-core v0.0.0-20200510152520-6588328db03b h1:2NsPhUD7aAY3eSYsZai6fvg7TvM1T3YEGnDE2d8uSMY=
+github.com/go-ready-blockchain/blockchain-go-core v0.0.0-20200510152520-6588328db03b/go.mod h1:WcwpUYjdxad3E87W9UJ97hHPPYOtPk5U7+U1CVtSNe8=
 github.com/go-sql-driver/mysql v1.5.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LBy8hT2VhHyBg=
 github.com/golang/protobuf v1.2.0 h1:P3YflyNX/ehuJFLhxviNdFxQPkGK5cDcApsge1SqnvM=
 github.com/golang/protobuf v1.2.0/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=

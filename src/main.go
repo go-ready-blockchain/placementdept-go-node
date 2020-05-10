@@ -8,12 +8,47 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/go-ready-blockchain/blockchain-go-core/notification"
+
 	"github.com/go-ready-blockchain/blockchain-go-core/blockchain"
 )
 
 func printUsage() {
 	fmt.Println("Usage:")
 	fmt.Println("verify-PlacementDept -student USN \tPlacementDept Verifies Student's data")
+}
+func sendNotification(w http.ResponseWriter, r *http.Request) {
+
+	type jsonBody struct {
+		Company      string `json:"company"`
+		Backlog      string `json:"backlog"`
+		StarOffer    string `json:"starOffer"`
+		Branch       string `json:"branch"`
+		Gender       string `json:"gender"`
+		CgpaCond     string `json:"cgpaCond"`
+		Cgpa         string `json:"cgpa"`
+		Perc10thCond string `json:"perc10thCond"`
+		Perc10th     string `json:"perc10th"`
+		Perc12thCond string `json:"perc12thCond"`
+		Perc12th     string `json:"perc12th"`
+	}
+	decoder := json.NewDecoder(r.Body)
+	var b jsonBody
+	if err := decoder.Decode(&b); err != nil {
+		log.Fatal(err)
+	}
+
+	message := ""
+	flag := notification.SendNotification("localhost:5000", b.Company, b.Backlog, b.StarOffer, b.Branch, b.Gender, b.CgpaCond, b.Cgpa, b.Perc10thCond, b.Perc10th, b.Perc12thCond, b.Perc12th)
+
+	if flag == true {
+		message = "Notification sent successfully to Students!"
+	} else {
+		message = "Sending Notification to Student Failed!"
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write([]byte(message))
 }
 
 func verificationByPlacementDept(name string, company string) bool {
@@ -85,6 +120,7 @@ func callprintUsage(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	port := "8084"
+	http.HandleFunc("/send", sendNotification)
 	http.HandleFunc("/verify-PlacementDept", callverificationByPlacementDept)
 	http.HandleFunc("/usage", callprintUsage)
 	fmt.Printf("Server listening on localhost:%s\n", port)
