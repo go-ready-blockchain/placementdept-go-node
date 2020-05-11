@@ -20,17 +20,17 @@ func printUsage() {
 func sendNotification(w http.ResponseWriter, r *http.Request) {
 
 	type jsonBody struct {
-		Company      string `json:"company"`
-		Backlog      string `json:"backlog"`
-		StarOffer    string `json:"starOffer"`
-		Branch       string `json:"branch"`
-		Gender       string `json:"gender"`
-		CgpaCond     string `json:"cgpaCond"`
-		Cgpa         string `json:"cgpa"`
-		Perc10thCond string `json:"perc10thCond"`
-		Perc10th     string `json:"perc10th"`
-		Perc12thCond string `json:"perc12thCond"`
-		Perc12th     string `json:"perc12th"`
+		Company      string   `json:"company"`
+		Backlog      string   `json:"backlog"`
+		StarOffer    string   `json:"starOffer"`
+		Branch       []string `json:"branch"`
+		Gender       string   `json:"gender"`
+		CgpaCond     string   `json:"cgpaCond"`
+		Cgpa         string   `json:"cgpa"`
+		Perc10thCond string   `json:"perc10thCond"`
+		Perc10th     string   `json:"perc10th"`
+		Perc12thCond string   `json:"perc12thCond"`
+		Perc12th     string   `json:"perc12th"`
 	}
 	decoder := json.NewDecoder(r.Body)
 	var b jsonBody
@@ -39,7 +39,7 @@ func sendNotification(w http.ResponseWriter, r *http.Request) {
 	}
 
 	message := ""
-	flag := notification.SendNotification("localhost:5000", b.Company, b.Backlog, b.StarOffer, b.Branch, b.Gender, b.CgpaCond, b.Cgpa, b.Perc10thCond, b.Perc10th, b.Perc12thCond, b.Perc12th)
+	flag := notification.SendNotification("localhost:8081/handlerequest", b.Company, b.Backlog, b.StarOffer, b.Branch, b.Gender, b.CgpaCond, b.Cgpa, b.Perc10thCond, b.Perc10th, b.Perc12thCond, b.Perc12th)
 
 	if flag == true {
 		message = "Notification sent successfully to Students!"

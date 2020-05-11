@@ -14,6 +14,8 @@ github.com/go-ready-blockchain/blockchain-go-core v0.0.0-20200508173507-d5a599ef
 github.com/go-ready-blockchain/blockchain-go-core v0.0.0-20200508173507-d5a599efda93/go.mod h1:dJvb5+Tc/m2+3rlfnbYKqTa6GTZWkwUvme4y/aBglHI=
 github.com/go-ready-blockchain/blockchain-go-core v0.0.0-20200510152520-6588328db03b h1:2NsPhUD7aAY3eSYsZai6fvg7TvM1T3YEGnDE2d8uSMY=
 github.com/go-ready-blockchain/blockchain-go-core v0.0.0-20200510152520-6588328db03b/go.mod h1:WcwpUYjdxad3E87W9UJ97hHPPYOtPk5U7+U1CVtSNe8=
+github.com/go-ready-blockchain/blockchain-go-core v0.0.0-20200511185950-c669065eb254 h1:cWiIUhOp8sm6WpEKYGnaYJkKujskHRc+Wj1NTFnySuw=
+github.com/go-ready-blockchain/blockchain-go-core v0.0.0-20200511185950-c669065eb254/go.mod h1:WcwpUYjdxad3E87W9UJ97hHPPYOtPk5U7+U1CVtSNe8=
 github.com/go-sql-driver/mysql v1.5.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LBy8hT2VhHyBg=
 github.com/golang/protobuf v1.2.0 h1:P3YflyNX/ehuJFLhxviNdFxQPkGK5cDcApsge1SqnvM=
 github.com/golang/protobuf v1.2.0/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
