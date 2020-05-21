@@ -7,10 +7,11 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/go-ready-blockchain/blockchain-go-core/notification"
-
 	"github.com/go-ready-blockchain/blockchain-go-core/blockchain"
+	"github.com/go-ready-blockchain/blockchain-go-core/logger"
 )
 
 func printUsage() {
@@ -18,6 +19,10 @@ func printUsage() {
 	fmt.Println("verify-PlacementDept -student USN \tPlacementDept Verifies Student's data")
 }
 func sendNotification(w http.ResponseWriter, r *http.Request) {
+	name := time.Now().String()
+	logger.FileName = "Placement Send Notification " + name + ".log"
+	logger.NodeName = "Placement Node"
+	logger.CreateFile()
 
 	type jsonBody struct {
 		Company      string   `json:"company"`
@@ -47,6 +52,10 @@ func sendNotification(w http.ResponseWriter, r *http.Request) {
 		message = "Sending Notification to Student Failed!"
 	}
 
+	logger.UploadToS3Bucket(logger.NodeName)
+
+	logger.DeleteFile()
+
 	w.Header().Set("Content-Type", "application/json")
 	w.Write([]byte(message))
 }
@@ -64,6 +73,11 @@ func verificationByPlacementDept(name string, company string) bool {
 }
 
 func callverificationByPlacementDept(w http.ResponseWriter, r *http.Request) {
+	name := time.Now().String()
+	logger.FileName = "Placement Verify " + name + ".log"
+	logger.NodeName = "Placement Node"
+	logger.CreateFile()
+
 	type jsonBody struct {
 		Name    string `json:"name"`
 		Company string `json:"company"`
@@ -80,6 +94,10 @@ func callverificationByPlacementDept(w http.ResponseWriter, r *http.Request) {
 	} else {
 		message = "Verification by Placement Dept Failed!"
 	}
+
+	logger.UploadToS3Bucket(logger.NodeName)
+
+	logger.DeleteFile()
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write([]byte(message))
