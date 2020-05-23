@@ -9,14 +9,15 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/go-ready-blockchain/blockchain-go-core/notification"
 	"github.com/go-ready-blockchain/blockchain-go-core/blockchain"
 	"github.com/go-ready-blockchain/blockchain-go-core/logger"
+	"github.com/go-ready-blockchain/blockchain-go-core/notification"
 )
 
 func printUsage() {
 	fmt.Println("Usage:")
-	fmt.Println("verify-PlacementDept -student USN \tPlacementDept Verifies Student's data")
+	fmt.Println("Make POST request to /send \tTo Send Email to Eligible Students based on Eligibility Criteria")
+	fmt.Println("Make POST request to /verify-PlacementDept \tPlacementDept Verifies Student's data")
 }
 func sendNotification(w http.ResponseWriter, r *http.Request) {
 	name := time.Now().String()
