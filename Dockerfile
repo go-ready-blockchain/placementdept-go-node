@@ -51,3 +51,4 @@ COPY --from=builder /dist/main /
 
 # Command to run
 ENTRYPOINT ["/main"]
+EXPOSE 8080
